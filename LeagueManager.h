@@ -16,8 +16,6 @@ private:
     std::string mode;
     std::vector<League> leagues;
     std::fstream readStrm;
-    SeasonEnrollment seasons;
-    ClubEnrollment clubs;
     std::string path;
     DataReader* reader;
     void readSeason(Season* currSeason);

@@ -16,7 +16,12 @@ SOURCES += main.cpp \
     SeasonEnrollment.cpp \
     ClubEnrollment.cpp \
     SeasonClubPair.cpp \
-    ClubPlayerPair.cpp
+    ClubPlayerPair.cpp \
+    DataWriter.cpp \
+    PlayerWriter.cpp \
+    FirstFitPlayerWriter.cpp \
+    BestFitPlayerWriter.cpp \
+    FixLengthClubWriter.cpp
 
 HEADERS += \
     Player.h \
@@ -31,4 +36,9 @@ HEADERS += \
     SeasonEnrollment.h \
     ClubEnrollment.h \
     SeasonClubPair.h \
-    ClubPlayerPair.h
+    ClubPlayerPair.h \
+    DataWriter.h \
+    PlayerWriter.h \
+    FirstFitPlayerWriter.h \
+    BestFitPlayerWriter.h \
+    FixLengthClubWriter.h
