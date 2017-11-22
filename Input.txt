@@ -1,0 +1,161 @@
+3 0
+5 91
+1 BIR
+1 EVE
+1 BLA
+1 CHE
+1 HUL
+1 BIR Maik Taylor
+0 BIR Ben Foster
+1 BIR Stephen Carr
+1 BIR David Murphy
+0 BIR Roger Johnson
+1 BIR Liam Ridgewell
+1 BIR Scott Dann
+0 BIR Stuart Parnaby
+1 BIR Martin Jiranek
+1 BIR Lee Bowyer
+1 BIR Craig Gardner
+0 BIR Barry Ferguson
+1 BIR Jordon Mutch
+1 BIR Keith Fahey
+1 BIR Enric Valles Prat
+1 BIR Nikola Zigic
+1 BIR Jack Storer
+1 BIR Wes Thomas
+1 BIR David Davis
+1 EVE Jan Mucha
+0 EVE Tim Howard
+1 EVE Tony Hibbert
+1 EVE Leighton Baines
+0 EVE Phil Jagielka
+1 EVE Sylvain Distin
+0 EVE Philip Neville
+1 EVE Seamus Coleman
+1 EVE Luke Garbutt
+1 EVE Shane Duffy
+0 EVE Shkodran Mustafi
+1 EVE Diniyar Bilyaletdinov
+1 EVE Tim Cahill
+1 EVE Leon Osman
+1 EVE Marouane Fellaini
+1 EVE Apostolos Vellios
+1 EVE Magaye Gueye
+1 EVE Jermaine Beckford
+1 EVE Ross Barkley
+1 BLA Paul Rachubka
+1 BLA Mark Halstead
+1 BLA Matthew Gilks
+1 BLA Richard Kingson
+1 BLA Ian Evatt
+1 BLA Alex Baptiste
+1 BLA Chris Basham
+1 BLA Craig Cathcart
+1 BLA David Carney
+0 BLA Andy Reid
+1 BLA Billy Clarke
+1 BLA Brett Ormerod
+0 BLA Tom Barkhuizen
+1 BLA Pa Modu Jobe
+1 BLA Sergei Kornilenko
+1 BLA Gary Taylor-Fletcher
+1 BLA Andy Reid
+0 CHE Petr Cech
+1 CHE Jan Sebek
+0 CHE Branislav Ivanovic
+0 CHE Ashley Cole
+1 CHE John Terry
+1 CHE Sam Hutchinson
+1 CHE Michael Essien
+0 CHE Ramires Santos do Nascimento
+1 CHE Frank Lampard
+1 CHE Yossi Benayoun
+1 CHE John Obi Mikel
+1 CHE Florent Malouda
+1 CHE Yuri Zhirkov
+1 CHE Jacopo Sala
+1 CHE Nicolas Anelka
+1 CHE Florent Malouda
+1 CHE Joshua McEachran
+1 CHE Salomon Armand Magloire Kalou
+1 CHE Ross Turnbull
+1 HUL Matt Duke
+1 HUL Jack Hobbs
+1 HUL Paul McShane
+0 HUL James Chester
+1 HUL Sonny Bradley
+1 HUL James Harper
+1 HUL Tom Cairney
+1 HUL Nick Barmby
+1 HUL Jamie Devitt
+0 HUL Nolberto Solano
+1 HUL Corry Evans
+1 HUL Gavan Holohan
+1 HUL Bradley Guzan
+1 HUL Richard Garcia
+1 HUL Craig Fagan
+1 HUL Mark Oxley
+1 HUL Jay Simpson
+1 23
+0 BIR
+0 EVE Jan Mucha
+1 EVE Tim Howard
+1 EVE Phil Jagielka
+1 EVE Philip Neville
+1 EVE Shkodran Mustafi
+0 EVE Leon Osman
+0 EVE Marouane Fellaini
+1 BLA Andy Reid
+1 BLA Tom Barkhuizen
+0 BLA Pa Modu Jobe
+0 BLA Sergei Kornilenko
+1 CHE Petr Cech
+1 CHE Branislav Ivanovic
+1 CHE Ashley Cole
+0 CHE John Terry
+0 CHE Sam Hutchinson
+1 CHE Ramires Santos do Nascimento
+0 CHE Frank Lampard
+0 CHE Florent Malouda
+1 HUL James Chester
+0 HUL Sonny Bradley
+0 HUL James Harper
+1 HUL Nolberto Solano
+1 36
+1 BOU
+0 BIR Maik Taylor
+1 BIR Ben Foster
+0 BIR Stephen Carr
+0 BIR David Murphy
+1 BIR Roger Johnson
+1 BIR Stuart Parnaby
+1 BIR Barry Ferguson
+0 BIR Keith Fahey
+0 EVE Phil Jagielka
+1 EVE Jan Mucha
+0 EVE Philip Neville
+1 EVE Leon Osman
+0 CHE Petr Cech
+1 CHE Florent Malouda
+1 CHE Frank Lampard
+0 CHE Ashley Cole
+0 HUL James Chester
+1 HUL Sonny Bradley
+1 BOU Shwan Jalal
+0 BOU Jon Stewart
+1 BOU Ryan Garry
+0 BOU Jason Pearce
+1 BOU Rhoys Wiggins
+1 BOU Stephen Purches
+0 BOU Tim Stephenson
+1 BOU Mathieu Baudry
+1 BOU Warren Cummings
+1 BOU Shaun Cooper
+1 BOU Marc Pugh
+1 BOU Liam Feeney
+1 BOU Danny Hollands
+1 BOU Mark Molesley
+1 BOU Joe Partington
+1 BOU Ben Williamson
+1 BOU Michael Symes
+1 BOU Danny Ings
