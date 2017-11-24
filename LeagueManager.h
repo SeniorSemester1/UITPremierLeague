@@ -2,19 +2,16 @@
 #define LEAGUEMANAGER_H
 #include <string>
 #include <fstream>
-#include <vector>
-#include <Club.h>
-#include <Player.h>
+#include <ClubRecord.h>
+#include <PlayerRecord.h>
 #include <Season.h>
 #include <League.h>
 #include <DataReader.h>
-#include <SeasonEnrollment.h>
-#include <ClubEnrollment.h>
 
 class LeagueManager {
 private:
     std::string mode;
-    std::vector<League> leagues;
+    League* league;
     std::fstream readStrm;
     std::string path;
     DataReader* reader;

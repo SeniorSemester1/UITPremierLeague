@@ -1,16 +1,19 @@
 #ifndef SEASON_H
 #define SEASON_H
-#include <vector>
-#include <Club.h>
+#include <list>
+#include <ClubRecord.h>
+#include <ClubManager.h>
 
 class Season
 {
 private:
     int Id;
+    ClubManager* clubManager;
 public:
-    Season(int seasonId) { this->Id = seasonId;}
-    Season(Season* aSeason) { this->Id = aSeason->Id;}
+    Season(int seasonId);
+    Season(Season* aSeason);
     int getId() {return Id;}
+    ClubManager* getClubManager() { return clubManager; }
     bool operator ==(Season* );
     bool operator !=(Season* );
 };

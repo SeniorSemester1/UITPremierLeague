@@ -1,7 +1,7 @@
 #ifndef PLAYERCHANGEWRAPPER_H
 #define PLAYERCHANGEWRAPPER_H
 #include <string>
-#include <Club.h>
+#include <ClubRecord.h>
 
 class PlayerChangeWrapper
 {

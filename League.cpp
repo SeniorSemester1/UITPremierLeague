@@ -4,6 +4,9 @@ League::League(int seasonNum, int mode)
 {
     this->seasonNum = seasonNum;
     this->mode = mode;
-    seasons = new SeasonEnrollment();
-    clubs = new ClubEnrollment();
+}
+
+void League::addSeason(Season* season) {
+    seasons.push_back(*season);
+
 }

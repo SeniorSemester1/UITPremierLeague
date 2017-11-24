@@ -9,9 +9,9 @@ LeagueManager::LeagueManager(std::string path) {
 }
 
 void LeagueManager::readData() {
-    leagues.push_back(*reader->readLeague());
+    league = reader->readLeague();
     try {
-        for (int idxSeason = 0; idxSeason < leagues[0].getSeasonNum(); idxSeason++) {
+        for (int idxSeason = 0; idxSeason < league->getSeasonNum(); idxSeason++) {
             Season* aSeason = new Season(idxSeason);
             readSeason(aSeason);
         }
@@ -27,44 +27,52 @@ void LeagueManager::readSeason(Season* currSeason) {
         SeasonChangeWrapper* seasonChange = reader->readSeasonChange();
         for (int idxClub = 0; idxClub < seasonChange->getClubChange(); idxClub++) {
             ClubChangeWrapper* clubChange = reader->readClub();
-            Club* aClub = new Club(clubChange->getName());
-            SeasonClubPair* seasonClubPair = new SeasonClubPair(currSeason, aClub);
+            ClubRecord* aClub = new ClubRecord(clubChange->getName(), league->getMode());
             switch (clubChange->getMode()) {
             case 1:
-                if (leagues[0].getSeasons()->addPairs(seasonClubPair)) {
+                if (currSeason->getClubManager()->addClub(*aClub)) {
 
                     std::cout << "Add successful" << std::endl;
                 }
                 break;
             case 0:
-                if (leagues[0].getSeasons()->removePairs(seasonClubPair)) {
+                if (currSeason->getClubManager()->removeClub(*aClub)) {
                     std::cout << "Remove successful" << std::endl;
                 }
                 break;
+            default:
+                break;
             }
-
+            delete(aClub);
         }
         for (int idxPlayer = 0; idxPlayer < seasonChange->getPlayerChange(); idxPlayer++) {
             PlayerChangeWrapper* playerChange = reader->readPlayer();
-            Club* aClub = new Club(playerChange->getClubName());
-            Player* aPlayer = new Player(playerChange->getPlayerName());
-            ClubPlayerPair* clubPlayerPair = new ClubPlayerPair(aClub, aPlayer);
-            switch (playerChange->getMode()) {
-            case 1:
-                if (leagues[0].getClubs()->addPairs(clubPlayerPair)) {
-                    std::cout << "Add successful" << std::endl;
+            ClubRecord* aClub = new ClubRecord(playerChange->getClubName());
+            if (currSeason->getClubManager()->isClubExist(*aClub)) {
+                PlayerRecord* aPlayer = new PlayerRecord(playerChange->getPlayerName());
+                switch (playerChange->getMode()) {
+                case 1:
+
+                    if (currSeason->getClubManager()->getClub(*aClub).getPlayerManager()->addPlayer(*aPlayer)) {
+                        std::cout << "Add successful" << std::endl;
+                    }
+                    break;
+                case 0:
+                    if (currSeason->getClubManager()->getClub(*aClub).getPlayerManager()->removePlayer(*aPlayer)) {
+                        std::cout << "Remove successful" << std::endl;
+                    }
+                    break;
+                default:
+                    break;
                 }
-                break;
-            case 0:
-                if (leagues[0].getClubs()->removePairs(clubPlayerPair)) {
-                    std::cout << "Remove successful" << std::endl;
-                }
-                break;
+                delete(aClub);
             }
+            delete(aClub);
         }
     } catch (std::invalid_argument& ia) {
 
     } catch (std::out_of_range& ofr) {
 
     }
+    league->addSeason(currSeason);
 }
