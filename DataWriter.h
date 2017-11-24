@@ -8,8 +8,8 @@ private:
     League* league;
 public:
     DataWriter(League* league);
-    void writeClub();
-    void writePlayer();
+    void writeClub2File(std::string );
+    void writePlayer2File(std::string, ClubRecord );
 
 };
 

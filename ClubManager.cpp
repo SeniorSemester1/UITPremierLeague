@@ -5,6 +5,10 @@ ClubManager::ClubManager()
 
 }
 
+void ClubManager::setHeadNum(int header) {
+    this->headNum = header;
+}
+
 ClubRecord ClubManager::getClub(ClubRecord aClub) {
 
 }

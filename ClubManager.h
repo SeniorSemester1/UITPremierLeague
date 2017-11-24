@@ -6,11 +6,15 @@
 class ClubManager
 {
 private:
+    int headNum;
     std::list<ClubRecord> clubsJoined;
 public:
     ClubManager();
     std::list<ClubRecord> getClubsList() { return clubsJoined; }
     ClubRecord getClub(ClubRecord );
+    int getHeadNum() {return headNum;}
+    void setHeadNum(int );
+
     bool isClubExist(ClubRecord );
     bool addClub(ClubRecord );
     bool removeClub(ClubRecord );

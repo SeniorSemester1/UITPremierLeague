@@ -6,11 +6,15 @@
 class PlayerManager
 {
 private:
-    std::list<PlayerRecord> players;
+    int headNum;
+    std::list<PlayerRecord> playersJoined;
 public:
-    std::list<PlayerRecord> getPlayersList() { return players; }
+    std::list<PlayerRecord> getPlayersList() { return playersJoined; }
     bool isPlayerExist(PlayerRecord );
     PlayerRecord getPlayer(PlayerRecord );
+    int getHeader() {return headNum;}
+    void setHeader(int );
+
     virtual bool addPlayer(PlayerRecord ) = 0;
     bool removePlayer(PlayerRecord );
     void defragment();
