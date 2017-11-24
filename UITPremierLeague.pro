@@ -13,7 +13,6 @@ SOURCES += main.cpp \
     DataWriter.cpp \
     PlayerRecord.cpp \
     ClubRecord.cpp \
-    Season.cpp \
     PlayerManager.cpp \
     ClubManager.cpp \
     BestFitPlayerManager.cpp \
@@ -29,7 +28,6 @@ HEADERS += \
     DataWriter.h \
     PlayerRecord.h \
     ClubRecord.h \
-    Season.h \
     PlayerManager.h \
     ClubManager.h \
     BestFitPlayerManager.h \

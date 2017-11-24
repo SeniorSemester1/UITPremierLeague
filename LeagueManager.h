@@ -4,7 +4,6 @@
 #include <fstream>
 #include <ClubRecord.h>
 #include <PlayerRecord.h>
-#include <Season.h>
 #include <League.h>
 #include <DataReader.h>
 
@@ -15,7 +14,7 @@ private:
     std::fstream readStrm;
     std::string path;
     DataReader* reader;
-    void readSeason(Season* currSeason);
+    void readSeason();
 public:
     LeagueManager(std::string path);
     void readData();
