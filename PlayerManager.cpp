@@ -19,17 +19,13 @@ bool PlayerManager::isPlayerExist(PlayerRecord aPlayer) {
     return false;
 }
 
-bool PlayerManager::removePlayer(PlayerRecord aPlayer) {
+bool PlayerManager::removePlayer(PlayerRecord delPlayer) {
     int position = BYTE_OF_HEADER_AND_SPACE;
     for (std::list<PlayerRecord>::iterator ci = playersJoined.begin(); ci != playersJoined.end(); ci++) {
         PlayerRecord* currPlayer = &*ci;
-        if (aPlayer == *currPlayer) {
-            if (headNum == -1) {
-                currPlayer->setName("*-1");
-            } else {
-                currPlayer->setName("*" + std::to_string(headNum));
-                currPlayer->setNextAvailRecordPos(headNum);
-            }
+        if (delPlayer == *currPlayer) {
+            currPlayer->setName("*" + std::to_string(headNum));
+            currPlayer->setNextAvailRecordPos(headNum);
             this->headNum = position;
             return true;
         }

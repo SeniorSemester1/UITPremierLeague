@@ -2,6 +2,8 @@
 #include <DataReader.h>
 #include <iostream>
 
+#define ADD 1
+#define REMOVE 0
 
 LeagueManager::LeagueManager(std::string path) {
     this->path = path;
@@ -29,13 +31,13 @@ void LeagueManager::readSeason() {
             ClubChangeWrapper* clubChange = reader->readClub();
             ClubRecord* aClub = new ClubRecord(clubChange->getName(), league->getMode());
             switch (clubChange->getMode()) {
-            case 1:
+            case ADD:
                 if (league->getClubManager()->addClub(*aClub)) {
 
                     std::cout << "Add successful" << std::endl;
                 }
                 break;
-            case 0:
+            case REMOVE:
                 if (league->getClubManager()->removeClub(*aClub)) {
                     std::cout << "Remove successful" << std::endl;
                 }
@@ -51,12 +53,12 @@ void LeagueManager::readSeason() {
             if (league->getClubManager()->isClubExist(*aClub)) {
                 PlayerRecord* aPlayer = new PlayerRecord(playerChange->getPlayerName());
                 switch (playerChange->getMode()) {
-                case 1:
+                case ADD:
                     if (league->getClubManager()->getClub(*aClub).getPlayerManager()->addPlayer(*aPlayer)) {
                         std::cout << "Add successful" << std::endl;
                     }
                     break;
-                case 0:
+                case REMOVE:
                     if (league->getClubManager()->getClub(*aClub).getPlayerManager()->removePlayer(*aPlayer)) {
                         std::cout << "Remove successful" << std::endl;
                     }
