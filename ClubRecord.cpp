@@ -2,6 +2,9 @@
 #include <BestFitPlayerManager.h>
 #include <FirstFitPlayerManager.h>
 
+#define FIRST_FIT_MODE 1
+#define BEST_FIT_MODE 0
+
 ClubRecord::ClubRecord(std::string name) {
     this->name = name;
 }
@@ -9,9 +12,9 @@ ClubRecord::ClubRecord(std::string name) {
 
 ClubRecord::ClubRecord(std::string name, int recordMode) {
     this->name = name;
-    if (recordMode == 1)
+    if (recordMode == FIRST_FIT_MODE)
         this->playerManager = new FirstFitPlayerManager();
-    else if (recordMode == 0)
+    else if (recordMode == BEST_FIT_MODE)
         this->playerManager = new BestFitPlayerManager();
 }
 

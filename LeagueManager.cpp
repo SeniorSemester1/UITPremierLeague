@@ -2,6 +2,7 @@
 #include <DataReader.h>
 #include <iostream>
 
+
 LeagueManager::LeagueManager(std::string path) {
     this->path = path;
     readStrm.open(path, std::ios::in);
@@ -51,7 +52,6 @@ void LeagueManager::readSeason() {
                 PlayerRecord* aPlayer = new PlayerRecord(playerChange->getPlayerName());
                 switch (playerChange->getMode()) {
                 case 1:
-
                     if (league->getClubManager()->getClub(*aClub).getPlayerManager()->addPlayer(*aPlayer)) {
                         std::cout << "Add successful" << std::endl;
                     }
