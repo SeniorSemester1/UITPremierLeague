@@ -1,15 +1,15 @@
 #include "DataReader.h"
 #include <iostream>
 
-DataReader::DataReader(std::fstream& readStrm)
+DataReader::DataReader(std::string path)
 {
-    this->readStrm = &readStrm;
+    this->readStrm.open(path, std::ios::in);
 }
 
 League* DataReader::readLeague() {
     std::string seasonStr, modeStr;
-    std::getline(*readStrm, seasonStr, ' ');
-    std::getline(*readStrm, modeStr, '\n');
+    std::getline(readStrm, seasonStr, ' ');
+    std::getline(readStrm, modeStr, '\n');
     std::cout << seasonStr << " " << modeStr << std::endl;
     int seasonInt = std::stoi(seasonStr);
     int modeInt = std::stoi(modeStr);
@@ -19,8 +19,8 @@ League* DataReader::readLeague() {
 
 SeasonChangeWrapper* DataReader::readSeasonChange() {
     std::string clubChangeStr, playerChangeStr;
-    std::getline(*readStrm, clubChangeStr, ' ');
-    std::getline(*readStrm, playerChangeStr, '\n');
+    std::getline(readStrm, clubChangeStr, ' ');
+    std::getline(readStrm, playerChangeStr, '\n');
     std::cout << clubChangeStr << " " << playerChangeStr << std::endl;
     int clubChangeInt = std::stoi(clubChangeStr);
     int playerChangeInt = std::stoi(playerChangeStr);
@@ -31,8 +31,8 @@ SeasonChangeWrapper* DataReader::readSeasonChange() {
 ClubChangeWrapper* DataReader::readClub()
 {
     std::string modeStr, name;
-    std::getline(*readStrm, modeStr, ' ');
-    std::getline(*readStrm, name, '\n');
+    std::getline(readStrm, modeStr, ' ');
+    std::getline(readStrm, name, '\n');
     std::cout << modeStr << " " << name << std::endl;
     int modeInt = std::stoi(modeStr);
     ClubChangeWrapper* wrapper = new ClubChangeWrapper(modeInt, name);
@@ -41,13 +41,17 @@ ClubChangeWrapper* DataReader::readClub()
 
 PlayerChangeWrapper* DataReader::readPlayer() {
     std::string modeStr, playerName, clubName;
-    std::getline(*readStrm, modeStr, ' ');
-    std::getline(*readStrm, clubName, ' ');
-    std::getline(*readStrm, playerName, '\n');
+    std::getline(readStrm, modeStr, ' ');
+    std::getline(readStrm, clubName, ' ');
+    std::getline(readStrm, playerName, '\n');
     std::cout << modeStr << " " << clubName << " " << playerName << std::endl;
     int modeInt = std::stoi(modeStr);
     PlayerChangeWrapper* wrapper = new PlayerChangeWrapper(modeInt, playerName, clubName);
     return wrapper;
+}
+
+void DataReader::closeStream() {
+    readStrm.close();
 }
 
 

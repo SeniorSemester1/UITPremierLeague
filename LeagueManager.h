@@ -6,19 +6,21 @@
 #include <PlayerRecord.h>
 #include <League.h>
 #include <DataReader.h>
+#include <DataWriter.h>
 
 class LeagueManager {
 private:
-    std::string mode;
     League* league;
-    std::fstream readStrm;
-    std::string path;
     DataReader* reader;
+    DataWriter* writer;
     void readSeason();
+    void readClub(int );
+    void readPlayer(int );
 public:
-    LeagueManager(std::string path);
-    void readData();
-
+    LeagueManager();
+    void readData(std::string path);
+    void writeClub2File(std::string path);
+    void writePlayer2File();
 };
 
 #endif // LEAGUEMANAGER_H

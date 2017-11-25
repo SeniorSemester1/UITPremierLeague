@@ -15,16 +15,17 @@ void DataWriter::writeClub2File(std::string path) {
     for (std::list<ClubRecord>::iterator it = clubs.begin(); it != clubs.end(); it++) {
         writeStrm << ((ClubRecord)*it).getName() << "|";
     }
-
+    writeStrm.close();
 }
 
-void DataWriter::writePlayer2File(std::string path, ClubRecord club) {
+void DataWriter::writePlayer2File(ClubRecord club) {
     std::fstream writeStrm;
-    writeStrm.open(path, std::ios::out);
+    writeStrm.open(club.getName() + ".TXT", std::ios::out);
 
     std::list<PlayerRecord> players = league->getClubManager()->getClub(club).getPlayerManager()->getPlayersList();
     writeStrm << league->getClubManager()->getClub(club).getPlayerManager()->getHeader() << " ";
     for (std::list<PlayerRecord>::iterator it = players.begin(); it != players.end(); it++) {
         writeStrm << ((PlayerRecord)*it).getName() << "|";
     }
+    writeStrm.close();
 }

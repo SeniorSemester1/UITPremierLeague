@@ -9,13 +9,14 @@
 class DataReader
 {
 private:
-    std::fstream* readStrm;
+    std::fstream readStrm;
 public:
-    DataReader(std::fstream& readStrm);
+    DataReader(std::string path);
     League* readLeague();
     SeasonChangeWrapper* readSeasonChange();
     ClubChangeWrapper* readClub();
     PlayerChangeWrapper* readPlayer();
+    void closeStream();
 };
 
 #endif // DATAREADER_H

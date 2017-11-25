@@ -9,8 +9,7 @@ private:
 public:
     DataWriter(League* league);
     void writeClub2File(std::string );
-    void writePlayer2File(std::string, ClubRecord );
-
+    void writePlayer2File(ClubRecord );
 };
 
 #endif // DATAWRITER_H
