@@ -1,19 +1,22 @@
 #ifndef LEAGUE_H
 #define LEAGUE_H
-#include <vector>
 #include <ClubManager.h>
+#include <ClubRecord.h>
 
 class League
 {
 private:
     int seasonNum;
     int mode;
-    ClubManager* clubManager;
+    ClubManager* joinedClub;
+    std::list<ClubRecord> leftClub;
+
 public:
     League(int , int );
     int getSeasonNum() {return seasonNum;}
     int getMode() {return mode;}
-    ClubManager* getClubManager() {return clubManager;}
+    ClubManager* getClubManager() {return joinedClub;}
+
 };
 
 #endif // LEAGUE_H

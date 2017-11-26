@@ -19,6 +19,15 @@ bool PlayerManager::isPlayerExist(PlayerRecord aPlayer) {
     return false;
 }
 
+std::list<PlayerRecord>::iterator PlayerManager::getNextAvailRecordByPosition(int nextAvalPos) {
+    int position = BYTE_OF_HEADER_AND_SPACE;
+    for (std::list<PlayerRecord>::iterator ite = playersJoined.begin(); ite != playersJoined.end(); ite++) {
+        if (position == nextAvalPos)
+            return ite;
+        position += ((PlayerRecord)*ite).getSize() + BYTE_OF_PLAYER_SIZE;
+    }
+}
+
 bool PlayerManager::removePlayer(PlayerRecord delPlayer) {
     int position = BYTE_OF_HEADER_AND_SPACE;
     for (std::list<PlayerRecord>::iterator ci = playersJoined.begin(); ci != playersJoined.end(); ci++) {

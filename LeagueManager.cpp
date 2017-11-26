@@ -87,7 +87,7 @@ void LeagueManager::readPlayer(int playerChangeNum) {
 
 void LeagueManager::writeClub2File(std::string path) {
     league->getClubManager()->defragment();
-    writer->writeClub2File("CLUBS.TXT");
+    writer->writeClub2File(path);
 }
 
 void LeagueManager::writePlayer2File() {

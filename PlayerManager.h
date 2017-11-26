@@ -12,6 +12,8 @@ protected:
 
     const int BYTE_OF_PLAYER_SIZE = 1;
     const int BYTE_OF_HEADER_AND_SPACE = 2;
+
+    std::list<PlayerRecord>::iterator getNextAvailRecordByPosition(int );
 public:
     std::list<PlayerRecord> getPlayersList() { return playersJoined; }
     bool isPlayerExist(PlayerRecord );

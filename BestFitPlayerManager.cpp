@@ -18,33 +18,29 @@ bool BestFitPlayerManager::addPlayer(PlayerRecord newPlayer) {
 
         int nextAvailPos = headNum;
         int bestFitSize = INT32_MAX;
-        PlayerRecord* bestFitPlayerRecord;
-        PlayerRecord* previousPlayerRecord;
+        PlayerRecord* bestFitPlayerRecord = NULL;
+        PlayerRecord* previousPlayerRecord = NULL;
         std::list<PlayerRecord>::iterator ite;
 
         do {
             ite = getNextAvailRecordByPosition(nextAvailPos);
-            PlayerRecord* currRecord = &*ite;
-            if (currRecord->getSize() - newPlayer.getSize() < bestFitSize) {
-                bestFitPlayerRecord = currRecord;
-                bestFitSize = currRecord->getSize() - newPlayer.getSize();
-                previousPlayerRecord = currRecord;
+            PlayerRecord* currPlayerRecord = &*ite;
+            int redundantSpaces = currPlayerRecord->getSize() - newPlayer.getSize();
+            if ( redundantSpaces >= 0 && redundantSpaces < bestFitSize) {
+                bestFitPlayerRecord = currPlayerRecord;
+                bestFitSize = redundantSpaces;
+
             }
-            nextAvailPos = currRecord->getNextAvailRecordPos();
+            previousPlayerRecord = currPlayerRecord;
+            nextAvailPos = currPlayerRecord->getNextAvailRecordPos();
         } while (nextAvailPos != -1);
 
-        bestFitPlayerRecord->setName(newPlayer.getName());
-        previousPlayerRecord->setNextAvailRecordPos(bestFitPlayerRecord->getNextAvailRecordPos());
+        if (bestFitPlayerRecord == NULL) {
+            playersJoined.push_back(newPlayer);
+        } else {
+            bestFitPlayerRecord->setName(newPlayer.getName());
+            previousPlayerRecord->setNextAvailRecordPos(bestFitPlayerRecord->getNextAvailRecordPos());
+        }
     }
     return true;
-}
-
-
-std::list<PlayerRecord>::iterator BestFitPlayerManager::getNextAvailRecordByPosition(int nextAvalPos) {
-    int position = BYTE_OF_HEADER_AND_SPACE;
-    for (std::list<PlayerRecord>::iterator ite = playersJoined.begin(); ite != playersJoined.end(); ite++) {
-        if (position == nextAvalPos)
-            return ite;
-        position += ((PlayerRecord)*ite).getSize() + BYTE_OF_PLAYER_SIZE;
-    }
 }
