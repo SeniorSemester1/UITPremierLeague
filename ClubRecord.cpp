@@ -9,6 +9,15 @@ ClubRecord::ClubRecord(std::string name) {
     this->name = name;
 }
 
+void ClubRecord::setName(std::string name)
+{
+    this->name = name;
+}
+
+void ClubRecord::setRRN(std::int32_t x)
+{
+    this->RRN = x;
+}
 
 ClubRecord::ClubRecord(std::string name, int recordMode) {
     this->name = name;

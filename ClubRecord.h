@@ -14,6 +14,7 @@ private:
     int RRN;
     PlayerManager* playerManager;
 public:
+    ClubRecord();
     ClubRecord(std::string );
     ClubRecord(std::string, int );
     std::string getName() {return name;}
