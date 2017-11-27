@@ -1,28 +1,56 @@
 #include "ClubManager.h"
 #include "ClubRecord.h"
 
-#include <algorithm>
 #include <string>
 
+#define NONE_NEXT_REMOVED_RECORD_AVAILABLE -1
 
 ClubManager::ClubManager()
 {
-
+    headNum = NONE_NEXT_REMOVED_RECORD_AVAILABLE;
 }
 
 void ClubManager::setHeadNum(int header) {
     this->headNum = header;
 }
 
-ClubRecord ClubManager::getClub(ClubRecord aClub) {
-
+ClubRecord ClubManager::getClubJoined(ClubRecord aClub) {
+    for (std::list<ClubRecord>::const_iterator ite = clubsJoined.begin(); ite != clubsJoined.end(); ite++) {
+        ClubRecord currClub = (ClubRecord)*ite;
+        if (currClub == aClub)
+            return currClub;
+    }
 }
-bool ClubManager::addClub(ClubRecord newClub) {
 
-    if(headNum == -1) // doesn't have any avail space, add new to the end of the list
-    {
+bool ClubManager::isInClubLeft(ClubRecord aClub) {
+    for (std::list<ClubRecord>::const_iterator ite = clubsLeft.begin(); ite != clubsLeft.end(); ite++) {
+        ClubRecord currClub = (ClubRecord)*ite;
+        if (currClub == aClub)
+            return true;
+    }
+    return false;
+}
+
+ClubRecord ClubManager::getClubsLeft(ClubRecord aClub) {
+    for (std::list<ClubRecord>::const_iterator ite = clubsLeft.begin(); ite != clubsLeft.end(); ite++) {
+        ClubRecord currClub = (ClubRecord)*ite;
+        if (currClub == aClub)
+            return currClub;
+    }
+}
+
+bool ClubManager::addClub(ClubRecord newClub) {
+    if (isClubExist(newClub))
+        return false;
+
+    if (isInClubLeft(newClub)) {
+        newClub = getClubsLeft(newClub);
+        clubsLeft.remove(newClub);
+    }
+
+    if(headNum == NONE_NEXT_REMOVED_RECORD_AVAILABLE) { // doesn't have any avail space, add new to the end of the list
+        newClub.setRRN(clubsJoined.size());
         clubsJoined.push_back(newClub);
-        return true;
     }
     else
     {
@@ -30,77 +58,77 @@ bool ClubManager::addClub(ClubRecord newClub) {
         it = clubsJoined.begin();
         std::advance(it, headNum);  // replacement at first avail space
 
-        ClubRecord club_record_temp = *it;
-        int RRN_temp = club_record_temp.getRRN(); // next avail space index
-        headNum = RRN_temp;
+        headNum = it->getNextAvailRecord();
 
         *it = newClub; // replacement by new club
-        return true;
     }
-    return false;
+    return true;
 
 }
 bool ClubManager::removeClub(ClubRecord delClub) {
+    if (!isClubExist(delClub))
+        return false;
 
-    std::list<ClubRecord>::iterator it; // create list iterator
-    it = clubsJoined.begin();
+    std::list<ClubRecord>::iterator ite; // create list iterator
+    ite = clubsJoined.begin();
 
-    for(int i = 0; i < (int)clubsJoined.size(); i++)
+    for(ite; ite != clubsJoined.end(); ite++)
     {
-        std::advance(it, i); // getting an instant
-
-        if(delClub == &*it)
+        ClubRecord* currClub = &*ite;
+        if(delClub == *currClub)
         {
-            std::string str_temp = it->getName();
+            //move club left to another list
+            clubsLeft.push_back(*currClub);
+            ite->setPlayerManager(NULL);
 
-            if(headNum == -1)
+            if(headNum == NONE_NEXT_REMOVED_RECORD_AVAILABLE)
             {
-                headNum = i;
-                str_temp = "*-1" + str_temp;
-
-                it->setName(str_temp);
+                currClub->setName("*-1");
+                currClub->setNextAvailRecord(NONE_NEXT_REMOVED_RECORD_AVAILABLE);
             }
             else
             {
-                it->setRRN(headNum);
+                currClub->setName("*" + std::to_string(headNum));
+                currClub->setNextAvailRecord(headNum);
 
-                str_temp = std::to_string(headNum) + str_temp;
-                str_temp = "*" + str_temp;
-            headNum = i;
             }
-
-            return true;
+            headNum = currClub->getRRN();
         }
     }
-    return false;
+    return true;
 }
 void ClubManager::defragment() {
 
-    if(headNum == -1)
+    if(headNum == NONE_NEXT_REMOVED_RECORD_AVAILABLE)
         return;
 
-    std::list<ClubRecord>::iterator it; // create list iterator
-    it = clubsJoined.begin();
+    std::list<ClubRecord>::iterator ite; // create list iterator
+    ite = clubsJoined.begin();
 
-    while (nullptr != &*it) {
-       if(it->getName()[0] == '*') // search avail space
-           it = clubsJoined.erase(it); // delete avail space and move to next space
-       else
-           ++it; // move to next space
+    int index = 0;
+    while (ite != clubsJoined.end()) {
+       if(ite->getName()[0] == '*') { // search avail space
+           clubsLeft.push_back((ClubRecord)*ite);
+           ite = clubsJoined.erase(ite); // delete avail space and move to next space
+       }
+       else {
+           ite->setRRN(index);
+           index++;
+           ite++; // move to next space
+       }
     }
-    return;
+    headNum = NONE_NEXT_REMOVED_RECORD_AVAILABLE;
 }
 
 bool ClubManager::isClubExist(ClubRecord aClub) {
 
-    std::list<ClubRecord>::iterator it; // create list iterator
-    it = clubsJoined.begin();
+    std::list<ClubRecord>::const_iterator ite; // create list iterator
+    ite = clubsJoined.begin();
 
-    for(int i = 0; i < (int)clubsJoined.size(); i++)
+    for(ite; ite != clubsJoined.end(); ite++)
     {
-        std::advance(it, i);
-
-        if(aClub == &*it)
+        ClubRecord currClub = *ite;
+        if(aClub == currClub)
             return true;
     }
     return false;

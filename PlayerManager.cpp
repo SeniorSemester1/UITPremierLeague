@@ -45,13 +45,17 @@ bool PlayerManager::removePlayer(PlayerRecord delPlayer) {
 
 
 void PlayerManager::defragment() {
-    for (std::list<PlayerRecord>::iterator ci = playersJoined.begin(); ci != playersJoined.end(); ci++) {
-        PlayerRecord* currPlayer = &*ci;
-        if (currPlayer->getName()[0] == '*') {
-            playersJoined.erase(ci);
-        }
-        currPlayer->setSize(currPlayer->getName().size());
-    }
+    std::list<PlayerRecord>::iterator ite; // create list iterator
+    ite = playersJoined.begin();
 
+    while (ite != playersJoined.end()) {
+       if(ite->getName()[0] == '*') { // search avail space
+           ite = playersJoined.erase(ite); // delete avail space and move to next space
+       }
+       else {
+           ite++; // move to next space
+       }
+    }
+    headNum = NONE_OF_NEXT_RECORD_AVAILABLE;
 }
 

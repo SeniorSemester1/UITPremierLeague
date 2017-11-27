@@ -3,7 +3,7 @@
 
 BestFitPlayerManager::BestFitPlayerManager()
 {
-
+    headNum = NONE_OF_NEXT_RECORD_AVAILABLE;
 }
 
 

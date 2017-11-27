@@ -2,7 +2,7 @@
 
 FirstFitPlayerManager::FirstFitPlayerManager()
 {
-
+    headNum = NONE_OF_NEXT_RECORD_AVAILABLE;
 }
 
 bool FirstFitPlayerManager::addPlayer(PlayerRecord newPlayer) {

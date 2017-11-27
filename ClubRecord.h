@@ -12,6 +12,7 @@ class ClubRecord
 private:
     std::string name;
     int RRN;
+    int nextAvalRecord;
     PlayerManager* playerManager;
 public:
     ClubRecord();
@@ -19,12 +20,15 @@ public:
     ClubRecord(std::string, int );
     std::string getName() {return name;}
     int getRRN() {return RRN;}
+    int getNextAvailRecord() { return nextAvalRecord; }
     PlayerManager* getPlayerManager() {return playerManager;}
 
     void setName(std::string );
     void setRRN(int RRN);
-    bool operator ==(ClubRecord* );
-    bool operator !=(ClubRecord* );
+    void setNextAvailRecord(int );
+    void setPlayerManager(PlayerManager* );
+    bool operator ==(ClubRecord );
+    bool operator !=(ClubRecord );
 };
 
 #endif // CLUB_H

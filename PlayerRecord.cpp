@@ -1,8 +1,11 @@
 #include "PlayerRecord.h"
 
+#define BYTE_OF_RECORD_SIZE 1
+#define BYTE_OF_SEPARATE_SIGN 1
+
 PlayerRecord::PlayerRecord(std::string name) {
     this->name = name;
-    this->size = name.size();
+    this->size = name.size() + BYTE_OF_RECORD_SIZE + BYTE_OF_SEPARATE_SIGN;
 }
 
 void PlayerRecord::setName(std::string name) {

@@ -7,11 +7,12 @@
 class PlayerManager
 {
 protected:
-    int headNum = -1;
+    int headNum;
     std::list<PlayerRecord> playersJoined;
 
     const int BYTE_OF_PLAYER_SIZE = 1;
     const int BYTE_OF_HEADER_AND_SPACE = 2;
+    const int NONE_OF_NEXT_RECORD_AVAILABLE = -1;
 
     std::list<PlayerRecord>::iterator getNextAvailRecordByPosition(int );
 public:

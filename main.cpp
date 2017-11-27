@@ -8,4 +8,5 @@ int main()
     LeagueManager* league = new LeagueManager();
     league->readData("Input.txt");
     league->writeClub2File("CLUBS.TXT");
+    league->writePlayer2File();
 }

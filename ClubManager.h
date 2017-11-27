@@ -8,10 +8,13 @@ class ClubManager
 private:
     int headNum;
     std::list<ClubRecord> clubsJoined;
+    std::list<ClubRecord> clubsLeft;
+    bool isInClubLeft(ClubRecord );
+    ClubRecord getClubsLeft(ClubRecord );
 public:
     ClubManager();
     std::list<ClubRecord> getClubsList() { return clubsJoined; }
-    ClubRecord getClub(ClubRecord );
+    ClubRecord getClubJoined(ClubRecord );
     int getHeadNum() {return headNum;}
     void setHeadNum(int );
 
