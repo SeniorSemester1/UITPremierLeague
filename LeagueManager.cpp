@@ -12,14 +12,14 @@ LeagueManager::LeagueManager() {
 void LeagueManager::readData(std::string path) {
     reader = new DataReader(path);
     league = reader->readLeague();
-
+    writer = new DataWriter(league);
     try {
         for (int idxSeason = 0; idxSeason < league->getSeasonNum(); idxSeason++) {
             readSeason();
+            writePlayer2File(idxSeason + 1);
         }
         reader->closeStream();
 
-        writer = new DataWriter(league);
     } catch (std::invalid_argument& ia) {
 
     } catch (std::out_of_range& ofr) {
@@ -88,6 +88,17 @@ void LeagueManager::readPlayer(int playerChangeNum) {
 void LeagueManager::writeClub2File(std::string path) {
     league->getClubManager()->defragment();
     writer->writeClub2File(path);
+}
+
+void LeagueManager::writePlayer2File(int season) {
+    std::list<ClubRecord> clubList = league->getClubManager()->getClubsList();
+    for (std::list<ClubRecord>::iterator iteClub = clubList.begin(); iteClub != clubList.end(); iteClub++) {
+        ClubRecord aClub = *iteClub;
+        if (aClub.getPlayerManager() == NULL)
+            continue;
+        aClub.getPlayerManager()->defragment();
+        writer->writePlayer2File(aClub, season);
+    }
 }
 
 void LeagueManager::writePlayer2File() {

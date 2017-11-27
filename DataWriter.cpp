@@ -31,3 +31,16 @@ void DataWriter::writePlayer2File(ClubRecord club) {
     writeStrm << players.back().getSize() << players.back().getName();
     writeStrm.close();
 }
+
+void DataWriter::writePlayer2File(ClubRecord club, int season) {
+    std::fstream writeStrm;
+    writeStrm.open(club.getName() + "." + std::to_string(season), std::ios::out);
+
+    std::list<PlayerRecord> players = league->getClubManager()->getClubJoined(club).getPlayerManager()->getPlayersList();
+    writeStrm << league->getClubManager()->getClubJoined(club).getPlayerManager()->getHeader() << " ";
+    for (std::list<PlayerRecord>::iterator it = players.begin(); it != --players.end(); it++) {
+        writeStrm << it->getSize() << it->getName() << "|";
+    }
+    writeStrm << players.back().getSize() << players.back().getName();
+    writeStrm.close();
+}

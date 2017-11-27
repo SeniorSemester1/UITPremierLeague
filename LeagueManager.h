@@ -21,6 +21,7 @@ public:
     void readData(std::string path);
     void writeClub2File(std::string path);
     void writePlayer2File();
+    void writePlayer2File(int );
 };
 
 #endif // LEAGUEMANAGER_H
