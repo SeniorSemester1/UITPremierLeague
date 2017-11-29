@@ -16,14 +16,20 @@ bool FirstFitPlayerManager::addPlayer(PlayerRecord newPlayer) {
         int nextAvailPos = headNum;
         std::list<PlayerRecord>::iterator ite;
 
+        PlayerRecord* currRecord = NULL;
+        PlayerRecord* prevRecord = NULL;
+
         do {
             ite = getNextAvailRecordByPosition(nextAvailPos); //go to the next available position
             //*ite là đọc giá trị ở địa chỉ pointer ite trỏ tới
 
-            PlayerRecord* currRecord = &*ite;
+            currRecord = &*ite;
             int redundantSpaces = currRecord->getSize() - newPlayer.getSize();
             if (redundantSpaces >= 0) //compare to insert
             {
+                if (prevRecord != NULL) {
+                    prevRecord->setNextAvailRecordPos(currRecord->getNextAvailRecordPos());
+                }
                 //delete value in current record
                 //insert newPlayer to current record
                 //update headNum
@@ -31,14 +37,12 @@ bool FirstFitPlayerManager::addPlayer(PlayerRecord newPlayer) {
                 headNum = currRecord->getNextAvailRecordPos();
                 currRecord->setNextAvailRecordPos(-1);
             }
-            else
-            {
-                //go to next available position
-                nextAvailPos = currRecord->getNextAvailRecordPos();
-                //too long => add tail
-                if(nextAvailPos == -1)
-                    playersJoined.push_back(newPlayer);
-            }
+
+            prevRecord = currRecord;
+            nextAvailPos = currRecord->getNextAvailRecordPos();
+            //too long => add tail
+            if(nextAvailPos == -1)
+                playersJoined.push_back(newPlayer);
 
         } while (nextAvailPos != -1);
         //firstFitPlayerRecord->setName(newPlayer.getName());

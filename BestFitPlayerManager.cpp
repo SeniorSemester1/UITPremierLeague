@@ -26,20 +26,27 @@ bool BestFitPlayerManager::addPlayer(PlayerRecord newPlayer) {
             ite = getNextAvailRecordByPosition(nextAvailPos);
             PlayerRecord* currPlayerRecord = &*ite;
             int redundantSpaces = currPlayerRecord->getSize() - newPlayer.getSize();
-            if ( redundantSpaces >= 0 && redundantSpaces < bestFitSize) {
+            if (redundantSpaces >= 0 && redundantSpaces < bestFitSize) {
                 bestFitPlayerRecord = currPlayerRecord;
                 bestFitSize = redundantSpaces;
-
+                if (ite != playersJoined.begin()) {
+                    previousPlayerRecord = &*(--ite);
+                    ite++;
+                }
             }
-            previousPlayerRecord = currPlayerRecord;
             nextAvailPos = currPlayerRecord->getNextAvailRecordPos();
         } while (nextAvailPos != -1);
 
         if (bestFitPlayerRecord == NULL) {
             playersJoined.push_back(newPlayer);
         } else {
-            bestFitPlayerRecord->setName(newPlayer.getName());
-            previousPlayerRecord->setNextAvailRecordPos(bestFitPlayerRecord->getNextAvailRecordPos());
+            if (previousPlayerRecord != NULL) {
+                previousPlayerRecord->setNextAvailRecordPos(bestFitPlayerRecord->getNextAvailRecordPos());
+            }
+            else {
+                headNum = bestFitPlayerRecord->getNextAvailRecordPos();
+            }
+            bestFitPlayerRecord->setName(newPlayer.getName());           
         }
     }
     return true;
