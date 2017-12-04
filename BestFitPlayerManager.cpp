@@ -19,7 +19,8 @@ bool BestFitPlayerManager::addPlayer(PlayerRecord newPlayer) {
         int nextAvailPos = headNum;
         int bestFitSize = INT32_MAX;
         PlayerRecord* bestFitPlayerRecord = NULL;
-        PlayerRecord* previousPlayerRecord = NULL;
+        PlayerRecord* prevPlayerRecord = NULL;
+        PlayerRecord* prevBestFitPlayerRecord = NULL;
         std::list<PlayerRecord>::iterator ite;
 
         do {
@@ -29,19 +30,17 @@ bool BestFitPlayerManager::addPlayer(PlayerRecord newPlayer) {
             if (redundantSpaces >= 0 && redundantSpaces < bestFitSize) {
                 bestFitPlayerRecord = currPlayerRecord;
                 bestFitSize = redundantSpaces;
-                if (ite != playersJoined.begin()) {
-                    previousPlayerRecord = &*(--ite);
-                    ite++;
-                }
+                prevBestFitPlayerRecord = prevPlayerRecord;
             }
+            prevPlayerRecord = currPlayerRecord;
             nextAvailPos = currPlayerRecord->getNextAvailRecordPos();
         } while (nextAvailPos != -1);
 
         if (bestFitPlayerRecord == NULL) {
             playersJoined.push_back(newPlayer);
         } else {
-            if (previousPlayerRecord != NULL) {
-                previousPlayerRecord->setNextAvailRecordPos(bestFitPlayerRecord->getNextAvailRecordPos());
+            if (prevBestFitPlayerRecord != NULL) {
+                prevBestFitPlayerRecord->setNextAvailRecordPos(bestFitPlayerRecord->getNextAvailRecordPos());
             }
             else {
                 headNum = bestFitPlayerRecord->getNextAvailRecordPos();

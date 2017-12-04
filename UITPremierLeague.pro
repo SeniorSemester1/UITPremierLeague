@@ -16,7 +16,7 @@ SOURCES += main.cpp \
     PlayerManager.cpp \
     ClubManager.cpp \
     BestFitPlayerManager.cpp \
-    FirstFitPlayerManager.cpp
+    FirstFitPlayerManager.cpp \
 
 HEADERS += \
     DataReader.h \
@@ -31,4 +31,4 @@ HEADERS += \
     PlayerManager.h \
     ClubManager.h \
     BestFitPlayerManager.h \
-    FirstFitPlayerManager.h
+    FirstFitPlayerManager.h \
